@@ -23,24 +23,26 @@ function App() {
 
   return (
     <BrowserRouter>
-      <div>
+      <div className="app-container">
         <Navbar />
-        <Routes>
-          <Route path="/" element={<Home companies={companies} />} />
-          <Route
-            path="/companies"
-            element={<Companies companies={companies} toggleApply={toggleApply} />}
-          />
-          <Route
-            path="/companies/:id"
-            element={<CompanyDetails companies={companies} toggleApply={toggleApply} />}
-          />
-          <Route
-            path="/applications"
-            element={<Applications companies={companies} toggleApply={toggleApply} />}
-          />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home companies={companies} />} />
+            <Route
+              path="/companies"
+              element={<Companies companies={companies} toggleApply={toggleApply} />}
+            />
+            <Route
+              path="/companies/:id"
+              element={<CompanyDetails companies={companies} toggleApply={toggleApply} />}
+            />
+            <Route
+              path="/applications"
+              element={<Applications companies={companies} toggleApply={toggleApply} />}
+            />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
       </div>
     </BrowserRouter>
   );

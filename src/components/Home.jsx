@@ -13,26 +13,35 @@ function Home({ companies }) {
   const appliedCompanies = companies.filter((c) => c.isApplied);
 
   return (
-    <div>
-      <h1>Campus Placement Portal</h1>
-      <p>Yoooo!! Welcome to the campus placement drive</p>
+    <div className="home-container">
+      <div className="header-section">
+        <h1>Campus Placement Portal</h1>
+        <p className="intro-text">Yoooo!! Welcome to the campus placement drive</p>
+      </div>
 
-      <h3>My Profile</h3>
-      <p>Name: {myProfile.name}</p>
-      <p>Branch: {myProfile.branch}</p>
-      <p>CGPA: {myProfile.cgpa}</p>
+      <div className="content-grid">
+        <div className="card">
+          <h3>My Profile</h3>
+          <p>Name: {myProfile.name}</p>
+          <p>Branch: {myProfile.branch}</p>
+          <p>CGPA: {myProfile.cgpa}</p>
+        </div>
+
+        <div className="card">
+          <h3>Placement Stats</h3>
+          <p>Total Companies: {totalCompanies}</p>
+          <p>Eligible Companies: {eligibleCompanies.length}</p>
+          <p>Applied Companies: {appliedCompanies.length}</p>
+        </div>
+      </div>
 
       <hr />
 
-      <h3>Placement Stats</h3>
-      <p>Total Companies: {totalCompanies}</p>
-      <p>Eligible Companies: {eligibleCompanies.length}</p>
-      <p>Applied Companies: {appliedCompanies.length}</p>
-
-      <br />
-      <Link to="/companies">Browse Companies</Link>
-      {' '}
-      <Link to="/applications">View Applications</Link>
+      <div className="action-buttons">
+        <Link to="/companies" className="btn btn-primary">Browse Companies</Link>
+        {' '}
+        <Link to="/applications" className="btn btn-secondary">View Applications</Link>
+      </div>
     </div>
   );
 }

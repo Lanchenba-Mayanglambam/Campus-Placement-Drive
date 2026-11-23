@@ -8,9 +8,9 @@ function CompanyDetails({ companies, toggleApply }) {
 
   if (!company) {
     return (
-      <div>
+      <div className="details-container">
         <h2>Company Not Found</h2>
-        <Link to="/companies">Back to Companies</Link>
+        <Link to="/companies" className="btn-back">Back to Companies</Link>
       </div>
     );
   }
@@ -22,33 +22,38 @@ function CompanyDetails({ companies, toggleApply }) {
   const isDream = company.packageLPA >= 10;
 
   return (
-    <div>
-      <Link to="/companies">Back to Companies</Link>
+    <div className="details-container">
+      <Link to="/companies" className="btn-back">Back to Companies</Link>
 
-      <h1>
-        {company.name} {isDream && <span>(Dream Company)</span>}
-      </h1>
-      <p>Role: {company.role}</p>
-      <p>Package: {company.packageLPA} LPA</p>
-      <p>Location: {company.location}</p>
-      <p>Drive Date: {company.driveDate}</p>
+      <div className="details-card">
+        <h1>
+          {company.name} {isDream && <span className="dream-tag">(Dream Company)</span>}
+        </h1>
+        <p>Role: {company.role}</p>
+        <p>Package: {company.packageLPA} LPA</p>
+        <p>Location: {company.location}</p>
+        <p>Drive Date: {company.driveDate}</p>
 
-      <p>Minimum CGPA: {company.minCGPA}</p>
+        <p>Minimum CGPA: {company.minCGPA}</p>
 
-      <h3>Eligible Branches</h3>
-      <ul>
-        {company.eligibleBranches.map((branch) => (
-          <li key={branch}>{branch}</li>
-        ))}
-      </ul>
+        <h3>Eligible Branches</h3>
+        <ul className="branches-list">
+          {company.eligibleBranches.map((branch) => (
+            <li key={branch}>{branch}</li>
+          ))}
+        </ul>
 
-      {isEligible ? (
-        <button onClick={() => toggleApply(company.id)}>
-          {company.isApplied ? 'Withdraw' : 'Apply'}
-        </button>
-      ) : (
-        <span>Not Eligible</span>
-      )}
+        {isEligible ? (
+          <button
+            className={`btn-apply ${company.isApplied ? 'applied' : ''}`}
+            onClick={() => toggleApply(company.id)}
+          >
+            {company.isApplied ? 'Withdraw' : 'Apply'}
+          </button>
+        ) : (
+          <span className="not-eligible-tag">Not Eligible</span>
+        )}
+      </div>
     </div>
   );
 }

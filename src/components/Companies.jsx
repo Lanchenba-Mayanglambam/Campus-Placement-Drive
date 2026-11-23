@@ -23,23 +23,27 @@ function Companies({ companies, toggleApply }) {
     <div>
       <h1>All Companies</h1>
 
-      <label>Filter: </label>
-      <select value={filter} onChange={(e) => setFilter(e.target.value)}>
-        <option value="All">All</option>
-        <option value="Eligible">Eligible</option>
-        <option value="Not Eligible">Not Eligible</option>
-      </select>
+      <div className="filter-wrapper">
+        <label>Filter: </label>
+        <select value={filter} onChange={(e) => setFilter(e.target.value)}>
+          <option value="All">All</option>
+          <option value="Eligible">Eligible</option>
+          <option value="Not Eligible">Not Eligible</option>
+        </select>
+      </div>
 
       <br />
       <br />
 
-      {filteredCompanies.map((company) => (
-        <CompanyCard
-          key={company.id}
-          company={company}
-          toggleApply={toggleApply}
-        />
-      ))}
+      <div className="company-cards-grid">
+        {filteredCompanies.map((company) => (
+          <CompanyCard
+            key={company.id}
+            company={company}
+            toggleApply={toggleApply}
+          />
+        ))}
+      </div>
     </div>
   );
 }
